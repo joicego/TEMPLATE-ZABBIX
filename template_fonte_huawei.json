@@ -1,0 +1,634 @@
+{
+    "zabbix_export": {
+        "version": "5.4",
+        "date": "2021-09-15T15:41:10Z",
+        "groups": [
+            {
+                "uuid": "a6e9dfca3ae746bebf4349a4d2961928",
+                "name": "FONTE HUAWEI"
+            }
+        ],
+        "templates": [
+            {
+                "uuid": "22956fc9525044c393a180e47f366f1b",
+                "template": "103 - FONTE HUAWEI",
+                "name": "103 - FONTE HUAWEI",
+                "groups": [
+                    {
+                        "name": "FONTE HUAWEI"
+                    }
+                ],
+                "items": [
+                    {
+                        "uuid": "8ad9cdbffaa146baaf1ab08aad64353d",
+                        "name": "Status de queda de energia AC",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.5.2.1.1.99.1",
+                        "key": "hwAcInputOperStatus",
+                        "delay": "30s",
+                        "history": "60d",
+                        "trends": "0",
+                        "valuemap": {
+                            "name": "AcOutageStatus"
+                        },
+                        "triggers": [
+                            {
+                                "uuid": "bd1208dfb91c4f81abc471aa66beac05",
+                                "expression": "last(/103 - FONTE HUAWEI/hwAcInputOperStatus)=2",
+                                "name": "{$HOST.NAME} STATUS QUEDA AC \"{ITEM.VALUE}\"",
+                                "priority": "HIGH"
+                            },
+                            {
+                                "uuid": "c4a7ef4225fc4f4ca601800d3525484a",
+                                "expression": "last(/103 - FONTE HUAWEI/hwAcInputOperStatus)=3",
+                                "name": "{$HOST.NAME} STATUS QUEDA AC \"{ITEM.VALUE}\"",
+                                "priority": "HIGH"
+                            },
+                            {
+                                "uuid": "21a81647169d45c79e5abd19e58cef70",
+                                "expression": "last(/103 - FONTE HUAWEI/hwAcInputOperStatus)=4",
+                                "name": "{$HOST.NAME} STATUS QUEDA AC \"{ITEM.VALUE}\"",
+                                "priority": "HIGH"
+                            },
+                            {
+                                "uuid": "295d23ad4fcd440bb5af123ef9c0d75c",
+                                "expression": "last(/103 - FONTE HUAWEI/hwAcInputOperStatus)=5",
+                                "name": "{$HOST.NAME} STATUS QUEDA AC \"{ITEM.VALUE}\"",
+                                "priority": "HIGH"
+                            },
+                            {
+                                "uuid": "9e0ac58a30ff479eab8980fe3e15046b",
+                                "expression": "last(/103 - FONTE HUAWEI/hwAcInputOperStatus)=6",
+                                "name": "{$HOST.NAME} STATUS QUEDA AC \"{ITEM.VALUE}\"",
+                                "priority": "HIGH"
+                            },
+                            {
+                                "uuid": "7bd7540e4d104b4e9fbbae4991b302fb",
+                                "expression": "last(/103 - FONTE HUAWEI/hwAcInputOperStatus)=7",
+                                "name": "{$HOST.NAME} STATUS QUEDA AC \"{ITEM.VALUE}\"",
+                                "priority": "HIGH"
+                            },
+                            {
+                                "uuid": "6ef5749cad3347b7af31969d5d8c7ab1",
+                                "expression": "last(/103 - FONTE HUAWEI/hwAcInputOperStatus)=254",
+                                "name": "{$HOST.NAME} STATUS QUEDA AC \"{ITEM.VALUE}\"",
+                                "priority": "HIGH"
+                            },
+                            {
+                                "uuid": "b41e2b14b1ea44b0a2d90386f20727f8",
+                                "expression": "last(/103 - FONTE HUAWEI/hwAcInputOperStatus)=1",
+                                "name": "{$HOST.NAME} STATUS QUEDA AC RESOLVIDO \"{ITEM.VALUE}\"",
+                                "priority": "INFO"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "157a3ddd7dcc4fe6b0ff49899c7ba8e4",
+                        "name": "Corrente AC",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.5.1.3.0",
+                        "key": "hwAcsTotalCurrent",
+                        "history": "60d",
+                        "trends": "0",
+                        "value_type": "FLOAT",
+                        "units": "A",
+                        "preprocessing": [
+                            {
+                                "type": "MULTIPLIER",
+                                "parameters": [
+                                    "0.1"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "b813981858fb4d858b089664ba01f3dc",
+                        "name": "Capacidade nominal total da Bateria",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.4.2.8.0",
+                        "key": "hwBattRatedCapacity",
+                        "delay": "5m",
+                        "history": "60d",
+                        "trends": "0",
+                        "units": "Ah"
+                    },
+                    {
+                        "uuid": "9f52791cbcce49d38bb587a54fc03267",
+                        "name": "Status da Bateria",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.4.2.3.0",
+                        "key": "hwBattsChargeStatus",
+                        "delay": "30s",
+                        "history": "60d",
+                        "trends": "0",
+                        "valuemap": {
+                            "name": "statusBatt"
+                        },
+                        "triggers": [
+                            {
+                                "uuid": "679815b5edac4c9d925906661fd8d401",
+                                "expression": "last(/103 - FONTE HUAWEI/hwBattsChargeStatus)=1",
+                                "name": "{$HOST.NAME} STATUS CARGA BATERIA RESOLVIDO \"{ITEM.VALUE}\"",
+                                "priority": "INFO"
+                            },
+                            {
+                                "uuid": "a1c02ab040f442f0b3844d024923c151",
+                                "expression": "change(/103 - FONTE HUAWEI/hwBattsChargeStatus)<>1",
+                                "name": "{$HOST.NAME} STATUS DA BATERIA MUDOU \"{ITEM.VALUE}\"",
+                                "priority": "HIGH"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "9a0f8f52134c4c6fa891858c0c7a542c",
+                        "name": "Tempo Backup Bateria",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.4.2.2.0",
+                        "key": "hwBattsPreDischargeTime",
+                        "history": "60d",
+                        "trends": "0",
+                        "units": "h",
+                        "preprocessing": [
+                            {
+                                "type": "MULTIPLIER",
+                                "parameters": [
+                                    "0.01666667"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "40e5d17ade7346b38fe593cf4e837392",
+                        "name": "Status da Retificadora",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.3.1.8.0",
+                        "key": "hwCtrlRectsAllOnOff",
+                        "history": "60d",
+                        "trends": "0",
+                        "valuemap": {
+                            "name": "ctrlRectsOnOff"
+                        },
+                        "triggers": [
+                            {
+                                "uuid": "18bb27b9bb7c4ff1b91520e680a27322",
+                                "expression": "last(/103 - FONTE HUAWEI/hwCtrlRectsAllOnOff)=2 or last(/103 - FONTE HUAWEI/hwCtrlRectsAllOnOff)=255",
+                                "name": "{$HOST.NAME} MODULO DA RETIFICA MUDOU \"{ITEM.VALUE}\"",
+                                "priority": "HIGH"
+                            },
+                            {
+                                "uuid": "03ded892c1be470fa6b7bad105f15fab",
+                                "expression": "change(/103 - FONTE HUAWEI/hwCtrlRectsAllOnOff)<>1",
+                                "name": "{$HOST.NAME} STATUS DA RETIFICADORA MUDOU \"{ITEM.VALUE}\"",
+                                "priority": "HIGH"
+                            },
+                            {
+                                "uuid": "b5e0e0ecde3f47c6aa18a550ae951197",
+                                "expression": "last(/103 - FONTE HUAWEI/hwCtrlRectsAllOnOff)=1",
+                                "name": "{$HOST.NAME} STATUS DA RETIFICADORA RESOLVIDO \"{ITEM.VALUE}\"",
+                                "priority": "INFO"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "dbce2cd1ce864c5d84683a404f1fe00b",
+                        "name": "Barra de Voltagem",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.6.2.1.1.4.1",
+                        "key": "hwDcOutputVoltage",
+                        "history": "60d",
+                        "trends": "0",
+                        "value_type": "FLOAT",
+                        "units": "V",
+                        "preprocessing": [
+                            {
+                                "type": "MULTIPLIER",
+                                "parameters": [
+                                    "0.1"
+                                ]
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "f80cb3aab1df47a183ad059b8e1ccabb",
+                                "expression": "min(/103 - FONTE HUAWEI/hwDcOutputVoltage,#1440)<={$BARBUS.MIN} or max(/103 - FONTE HUAWEI/hwDcOutputVoltage,#1440)>={$BARBUS.MAX}",
+                                "name": "{$HOST.NAME} BARRA DE VOLTAGEM FORA DO HABITUAL: {ITEM.LASTVALUE}",
+                                "priority": "WARNING"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "ba9db023186f4816af476642fffeb406",
+                        "name": "Status Monitoramento",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.2.2.1.1.99.1",
+                        "key": "hwMonitorOperStatus",
+                        "history": "60d",
+                        "trends": "0",
+                        "valuemap": {
+                            "name": "statusmonit"
+                        },
+                        "triggers": [
+                            {
+                                "uuid": "515b1f2c216647a69dc302dd486eeb38",
+                                "expression": "change(/103 - FONTE HUAWEI/hwMonitorOperStatus)<>1",
+                                "name": "{$HOST.NAME} STATUS MONITORAMENTO: \"{ITEM.VALUE}\"",
+                                "priority": "WARNING"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "02c0df9e00fa43d68f2bf7183542e25d",
+                        "name": "Retifica 1 AC Voltage",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.3.2.2.1.6.28673",
+                        "key": "hwRectDCOutputPower",
+                        "history": "60d",
+                        "trends": "0",
+                        "value_type": "FLOAT",
+                        "units": "V",
+                        "preprocessing": [
+                            {
+                                "type": "MULTIPLIER",
+                                "parameters": [
+                                    "0.1"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "c762d5276f7d4addb6c8c8a7c803b194",
+                        "name": "Retifica 2 AC Voltage",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.3.2.2.1.6.28672",
+                        "key": "hwRectDCOutputPower2",
+                        "history": "60d",
+                        "trends": "0",
+                        "value_type": "FLOAT",
+                        "units": "V",
+                        "preprocessing": [
+                            {
+                                "type": "MULTIPLIER",
+                                "parameters": [
+                                    "0.1"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "f0aaa367ee6e422381b243f03b434dfa",
+                        "name": "Status do Modulo das Retificas",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.3.2.2.1.99.28672",
+                        "key": "hwRectOperStatus",
+                        "history": "60d",
+                        "trends": "0",
+                        "valuemap": {
+                            "name": "rectOperStatus"
+                        },
+                        "triggers": [
+                            {
+                                "uuid": "685ce169c67e4da398c089ea01de0af5",
+                                "expression": "last(/103 - FONTE HUAWEI/hwRectOperStatus)=1",
+                                "name": "{$HOST.NAME} MODULO RETIFICA RESOLVIDO \"{ITEM.VALUE}\"",
+                                "priority": "INFO"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "8d9b022594bd4fc0b4164596d2608b2a",
+                        "name": "Retifica 1 Taxa de Eficiencia",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.3.2.2.1.7.28673",
+                        "key": "hwRectRatedEfficiency1",
+                        "history": "60d",
+                        "trends": "0",
+                        "units": "%"
+                    },
+                    {
+                        "uuid": "c8fd93404137448ca3991bf2c731d7d3",
+                        "name": "Retifica 2 Taxa de Eficiencia",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.3.2.2.1.7.28672",
+                        "key": "hwRectRatedEfficiency2",
+                        "history": "60d",
+                        "trends": "0",
+                        "units": "%"
+                    },
+                    {
+                        "uuid": "45a520a7feec4bb7bfaa9b40cc87b77a",
+                        "name": "Tensao modulo Retificadora",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.3.1.5.0",
+                        "key": "hwRectsRatedVoltage",
+                        "history": "60d",
+                        "trends": "0",
+                        "value_type": "FLOAT",
+                        "units": "V",
+                        "preprocessing": [
+                            {
+                                "type": "MULTIPLIER",
+                                "parameters": [
+                                    "0.1"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "9ad339221bab41bf87e2c68a873bfee5",
+                        "name": "Potencia Total Entrada AC",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.3.1.11.0",
+                        "key": "hwRectsTotalACInputPower",
+                        "history": "60d",
+                        "trends": "0",
+                        "units": "W"
+                    },
+                    {
+                        "uuid": "53ebc82255154280a917dd736a9f5d3b",
+                        "name": "Modulo Retificador: Total DC Output Current",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.3.1.3.0",
+                        "key": "hwRectsTotalCurrent",
+                        "delay": "5m",
+                        "history": "60d",
+                        "trends": "0",
+                        "value_type": "FLOAT",
+                        "units": "A",
+                        "preprocessing": [
+                            {
+                                "type": "MULTIPLIER",
+                                "parameters": [
+                                    "0.1"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "5c36de9e1f6c46f2bea1d65b2aaabfd9",
+                        "name": "Potencia Total Saida",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.3.1.9.0",
+                        "key": "hwRectsTotalDCPower",
+                        "history": "60d",
+                        "trends": "0",
+                        "units": "W"
+                    },
+                    {
+                        "uuid": "9e6d4ad9ca474c339be27395bee7ce6b",
+                        "name": "Capacidade Restante Total",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.4.1.13.0",
+                        "key": "hwSetBattsRatedCapacity",
+                        "history": "60d",
+                        "trends": "0",
+                        "units": "Ah"
+                    },
+                    {
+                        "uuid": "b308016ec0384e83a2cf500b72295282",
+                        "name": "Localidade",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.1.1.1.0",
+                        "key": "hwSiteId",
+                        "delay": "30m",
+                        "history": "60d",
+                        "trends": "0",
+                        "value_type": "TEXT"
+                    },
+                    {
+                        "uuid": "5141b86627044b2285b13e407968d9a7",
+                        "name": "Status do Alarme",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-SMI::enterprises.2011.6.164.1.1.1.10.0",
+                        "key": "hwSiteRunningStatus",
+                        "delay": "30s",
+                        "history": "60d",
+                        "trends": "0",
+                        "description": "(1) normal\n(2) site contem alarme",
+                        "valuemap": {
+                            "name": "alarmStatusSite"
+                        },
+                        "triggers": [
+                            {
+                                "uuid": "3979dad5a49f4958bb281c97e0cd7820",
+                                "expression": "change(/103 - FONTE HUAWEI/hwSiteRunningStatus)<>1",
+                                "name": "{$HOST.NAME} STATUS DO ALARME DO SITE: \"{ITEM.LASTVALUE}\"",
+                                "priority": "INFO"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "0b350befe4104edd930f0c19f8c794c1",
+                        "name": "Uptime",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "SNMPv2-MIB::sysUpTime.0",
+                        "key": "sysUpTime",
+                        "delay": "2m",
+                        "history": "60d",
+                        "trends": "0",
+                        "units": "uptime",
+                        "preprocessing": [
+                            {
+                                "type": "MULTIPLIER",
+                                "parameters": [
+                                    "0.01"
+                                ]
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "d5a79d11345f4ea6a38223e0d4f57053",
+                                "expression": "last(/103 - FONTE HUAWEI/sysUpTime)<2m",
+                                "name": "{$HOST.NAME} REINICIOU",
+                                "priority": "AVERAGE"
+                            }
+                        ]
+                    }
+                ],
+                "macros": [
+                    {
+                        "macro": "{$BARBUS.MAX}",
+                        "value": "60"
+                    },
+                    {
+                        "macro": "{$BARBUS.MIN}",
+                        "value": "51"
+                    }
+                ],
+                "valuemaps": [
+                    {
+                        "uuid": "4f835dd8f036418485861d87420d4ea9",
+                        "name": "AcOutageStatus",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "Normal"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "AC OFF"
+                            },
+                            {
+                                "value": "3",
+                                "newvalue": "Ausente"
+                            },
+                            {
+                                "value": "4",
+                                "newvalue": "Alta Voltagem"
+                            },
+                            {
+                                "value": "5",
+                                "newvalue": "Baixa Voltagem"
+                            },
+                            {
+                                "value": "6",
+                                "newvalue": "Alta Frequencia"
+                            },
+                            {
+                                "value": "7",
+                                "newvalue": "Baixa Frequencia"
+                            },
+                            {
+                                "value": "254",
+                                "newvalue": "Desconhecido"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "5c231c28b5e14dd99fcad148ec741c99",
+                        "name": "alarmStatusSite",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "Normal"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "Alarmado"
+                            },
+                            {
+                                "value": "255",
+                                "newvalue": "Desconhecido"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "2e044081f22a483a8de5d3a957eb1409",
+                        "name": "ctrlRectsOnOff",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "ON"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "OFF"
+                            },
+                            {
+                                "value": "255",
+                                "newvalue": "Operador Nulo"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "a81c7fd11b9a49f8a75886b9163c1544",
+                        "name": "rectOperStatus",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "NORMAL"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "FALHA"
+                            },
+                            {
+                                "value": "3",
+                                "newvalue": "PROTEGIDO"
+                            },
+                            {
+                                "value": "4",
+                                "newvalue": "FALHA COMM"
+                            },
+                            {
+                                "value": "5",
+                                "newvalue": "DESLIGOU"
+                            },
+                            {
+                                "value": "6",
+                                "newvalue": "INVALIDO"
+                            },
+                            {
+                                "value": "7",
+                                "newvalue": "SEM CONFIG"
+                            },
+                            {
+                                "value": "254",
+                                "newvalue": "Alarme Retomado"
+                            },
+                            {
+                                "value": "255",
+                                "newvalue": "Desconhecido"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "ee29ee86b05f4ec6b36d94a7df91e945",
+                        "name": "statusBatt",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "float charging - Carregamento Continuo"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "boost charging - Carregamento aumentado"
+                            },
+                            {
+                                "value": "3",
+                                "newvalue": "discharging - Descarregando"
+                            },
+                            {
+                                "value": "4",
+                                "newvalue": "hibernating - Hibernando"
+                            },
+                            {
+                                "value": "7",
+                                "newvalue": "Offline"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "542834113b3047d8b2b3c7fcb565daf1",
+                        "name": "statusmonit",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "Normal"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "Falha RS485 port"
+                            },
+                            {
+                                "value": "3",
+                                "newvalue": "Falha net port"
+                            },
+                            {
+                                "value": "4",
+                                "newvalue": "Falha modulo monitoramento"
+                            },
+                            {
+                                "value": "254",
+                                "newvalue": "Retomada do Alarme"
+                            },
+                            {
+                                "value": "255",
+                                "newvalue": "Desconhecido"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
