@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.4</version>
+    <date>2021-09-15T15:41:09Z</date>
+    <groups>
+        <group>
+            <uuid>a6e9dfca3ae746bebf4349a4d2961928</uuid>
+            <name>FONTE HUAWEI</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <uuid>22956fc9525044c393a180e47f366f1b</uuid>
+            <template>103 - FONTE HUAWEI</template>
+            <name>103 - FONTE HUAWEI</name>
+            <groups>
+                <group>
+                    <name>FONTE HUAWEI</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <uuid>8ad9cdbffaa146baaf1ab08aad64353d</uuid>
+                    <name>Status de queda de energia AC</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.5.2.1.1.99.1</snmp_oid>
+                    <key>hwAcInputOperStatus</key>
+                    <delay>30s</delay>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <valuemap>
+                        <name>AcOutageStatus</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <uuid>bd1208dfb91c4f81abc471aa66beac05</uuid>
+                            <expression>last(/103 - FONTE HUAWEI/hwAcInputOperStatus)=2</expression>
+                            <name>{$HOST.NAME} STATUS QUEDA AC &quot;{ITEM.VALUE}&quot;</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>c4a7ef4225fc4f4ca601800d3525484a</uuid>
+                            <expression>last(/103 - FONTE HUAWEI/hwAcInputOperStatus)=3</expression>
+                            <name>{$HOST.NAME} STATUS QUEDA AC &quot;{ITEM.VALUE}&quot;</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>21a81647169d45c79e5abd19e58cef70</uuid>
+                            <expression>last(/103 - FONTE HUAWEI/hwAcInputOperStatus)=4</expression>
+                            <name>{$HOST.NAME} STATUS QUEDA AC &quot;{ITEM.VALUE}&quot;</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>295d23ad4fcd440bb5af123ef9c0d75c</uuid>
+                            <expression>last(/103 - FONTE HUAWEI/hwAcInputOperStatus)=5</expression>
+                            <name>{$HOST.NAME} STATUS QUEDA AC &quot;{ITEM.VALUE}&quot;</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>9e0ac58a30ff479eab8980fe3e15046b</uuid>
+                            <expression>last(/103 - FONTE HUAWEI/hwAcInputOperStatus)=6</expression>
+                            <name>{$HOST.NAME} STATUS QUEDA AC &quot;{ITEM.VALUE}&quot;</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>7bd7540e4d104b4e9fbbae4991b302fb</uuid>
+                            <expression>last(/103 - FONTE HUAWEI/hwAcInputOperStatus)=7</expression>
+                            <name>{$HOST.NAME} STATUS QUEDA AC &quot;{ITEM.VALUE}&quot;</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>6ef5749cad3347b7af31969d5d8c7ab1</uuid>
+                            <expression>last(/103 - FONTE HUAWEI/hwAcInputOperStatus)=254</expression>
+                            <name>{$HOST.NAME} STATUS QUEDA AC &quot;{ITEM.VALUE}&quot;</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>b41e2b14b1ea44b0a2d90386f20727f8</uuid>
+                            <expression>last(/103 - FONTE HUAWEI/hwAcInputOperStatus)=1</expression>
+                            <name>{$HOST.NAME} STATUS QUEDA AC RESOLVIDO &quot;{ITEM.VALUE}&quot;</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>157a3ddd7dcc4fe6b0ff49899c7ba8e4</uuid>
+                    <name>Corrente AC</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.5.1.3.0</snmp_oid>
+                    <key>hwAcsTotalCurrent</key>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>A</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.1</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <uuid>b813981858fb4d858b089664ba01f3dc</uuid>
+                    <name>Capacidade nominal total da Bateria</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.4.2.8.0</snmp_oid>
+                    <key>hwBattRatedCapacity</key>
+                    <delay>5m</delay>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <units>Ah</units>
+                </item>
+                <item>
+                    <uuid>9f52791cbcce49d38bb587a54fc03267</uuid>
+                    <name>Status da Bateria</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.4.2.3.0</snmp_oid>
+                    <key>hwBattsChargeStatus</key>
+                    <delay>30s</delay>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <valuemap>
+                        <name>statusBatt</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <uuid>679815b5edac4c9d925906661fd8d401</uuid>
+                            <expression>last(/103 - FONTE HUAWEI/hwBattsChargeStatus)=1</expression>
+                            <name>{$HOST.NAME} STATUS CARGA BATERIA RESOLVIDO &quot;{ITEM.VALUE}&quot;</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>a1c02ab040f442f0b3844d024923c151</uuid>
+                            <expression>change(/103 - FONTE HUAWEI/hwBattsChargeStatus)&lt;&gt;1</expression>
+                            <name>{$HOST.NAME} STATUS DA BATERIA MUDOU &quot;{ITEM.VALUE}&quot;</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>9a0f8f52134c4c6fa891858c0c7a542c</uuid>
+                    <name>Tempo Backup Bateria</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.4.2.2.0</snmp_oid>
+                    <key>hwBattsPreDischargeTime</key>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <units>h</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01666667</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <uuid>40e5d17ade7346b38fe593cf4e837392</uuid>
+                    <name>Status da Retificadora</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.3.1.8.0</snmp_oid>
+                    <key>hwCtrlRectsAllOnOff</key>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <valuemap>
+                        <name>ctrlRectsOnOff</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <uuid>18bb27b9bb7c4ff1b91520e680a27322</uuid>
+                            <expression>last(/103 - FONTE HUAWEI/hwCtrlRectsAllOnOff)=2 or last(/103 - FONTE HUAWEI/hwCtrlRectsAllOnOff)=255</expression>
+                            <name>{$HOST.NAME} MODULO DA RETIFICA MUDOU &quot;{ITEM.VALUE}&quot;</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>03ded892c1be470fa6b7bad105f15fab</uuid>
+                            <expression>change(/103 - FONTE HUAWEI/hwCtrlRectsAllOnOff)&lt;&gt;1</expression>
+                            <name>{$HOST.NAME} STATUS DA RETIFICADORA MUDOU &quot;{ITEM.VALUE}&quot;</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                        <trigger>
+                            <uuid>b5e0e0ecde3f47c6aa18a550ae951197</uuid>
+                            <expression>last(/103 - FONTE HUAWEI/hwCtrlRectsAllOnOff)=1</expression>
+                            <name>{$HOST.NAME} STATUS DA RETIFICADORA RESOLVIDO &quot;{ITEM.VALUE}&quot;</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>dbce2cd1ce864c5d84683a404f1fe00b</uuid>
+                    <name>Barra de Voltagem</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.6.2.1.1.4.1</snmp_oid>
+                    <key>hwDcOutputVoltage</key>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>V</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.1</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <triggers>
+                        <trigger>
+                            <uuid>f80cb3aab1df47a183ad059b8e1ccabb</uuid>
+                            <expression>min(/103 - FONTE HUAWEI/hwDcOutputVoltage,#1440)&lt;={$BARBUS.MIN} or max(/103 - FONTE HUAWEI/hwDcOutputVoltage,#1440)&gt;={$BARBUS.MAX}</expression>
+                            <name>{$HOST.NAME} BARRA DE VOLTAGEM FORA DO HABITUAL: {ITEM.LASTVALUE}</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>ba9db023186f4816af476642fffeb406</uuid>
+                    <name>Status Monitoramento</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.2.2.1.1.99.1</snmp_oid>
+                    <key>hwMonitorOperStatus</key>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <valuemap>
+                        <name>statusmonit</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <uuid>515b1f2c216647a69dc302dd486eeb38</uuid>
+                            <expression>change(/103 - FONTE HUAWEI/hwMonitorOperStatus)&lt;&gt;1</expression>
+                            <name>{$HOST.NAME} STATUS MONITORAMENTO: &quot;{ITEM.VALUE}&quot;</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>02c0df9e00fa43d68f2bf7183542e25d</uuid>
+                    <name>Retifica 1 AC Voltage</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.3.2.2.1.6.28673</snmp_oid>
+                    <key>hwRectDCOutputPower</key>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>V</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.1</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <uuid>c762d5276f7d4addb6c8c8a7c803b194</uuid>
+                    <name>Retifica 2 AC Voltage</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.3.2.2.1.6.28672</snmp_oid>
+                    <key>hwRectDCOutputPower2</key>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>V</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.1</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <uuid>f0aaa367ee6e422381b243f03b434dfa</uuid>
+                    <name>Status do Modulo das Retificas</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.3.2.2.1.99.28672</snmp_oid>
+                    <key>hwRectOperStatus</key>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <valuemap>
+                        <name>rectOperStatus</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <uuid>685ce169c67e4da398c089ea01de0af5</uuid>
+                            <expression>last(/103 - FONTE HUAWEI/hwRectOperStatus)=1</expression>
+                            <name>{$HOST.NAME} MODULO RETIFICA RESOLVIDO &quot;{ITEM.VALUE}&quot;</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>8d9b022594bd4fc0b4164596d2608b2a</uuid>
+                    <name>Retifica 1 Taxa de Eficiencia</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.3.2.2.1.7.28673</snmp_oid>
+                    <key>hwRectRatedEfficiency1</key>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <units>%</units>
+                </item>
+                <item>
+                    <uuid>c8fd93404137448ca3991bf2c731d7d3</uuid>
+                    <name>Retifica 2 Taxa de Eficiencia</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.3.2.2.1.7.28672</snmp_oid>
+                    <key>hwRectRatedEfficiency2</key>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <units>%</units>
+                </item>
+                <item>
+                    <uuid>45a520a7feec4bb7bfaa9b40cc87b77a</uuid>
+                    <name>Tensao modulo Retificadora</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.3.1.5.0</snmp_oid>
+                    <key>hwRectsRatedVoltage</key>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>V</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.1</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <uuid>9ad339221bab41bf87e2c68a873bfee5</uuid>
+                    <name>Potencia Total Entrada AC</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.3.1.11.0</snmp_oid>
+                    <key>hwRectsTotalACInputPower</key>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <units>W</units>
+                </item>
+                <item>
+                    <uuid>53ebc82255154280a917dd736a9f5d3b</uuid>
+                    <name>Modulo Retificador: Total DC Output Current</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.3.1.3.0</snmp_oid>
+                    <key>hwRectsTotalCurrent</key>
+                    <delay>5m</delay>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>A</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.1</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <uuid>5c36de9e1f6c46f2bea1d65b2aaabfd9</uuid>
+                    <name>Potencia Total Saida</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.3.1.9.0</snmp_oid>
+                    <key>hwRectsTotalDCPower</key>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <units>W</units>
+                </item>
+                <item>
+                    <uuid>9e6d4ad9ca474c339be27395bee7ce6b</uuid>
+                    <name>Capacidade Restante Total</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.4.1.13.0</snmp_oid>
+                    <key>hwSetBattsRatedCapacity</key>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <units>Ah</units>
+                </item>
+                <item>
+                    <uuid>b308016ec0384e83a2cf500b72295282</uuid>
+                    <name>Localidade</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.1.1.1.0</snmp_oid>
+                    <key>hwSiteId</key>
+                    <delay>30m</delay>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                </item>
+                <item>
+                    <uuid>5141b86627044b2285b13e407968d9a7</uuid>
+                    <name>Status do Alarme</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.2011.6.164.1.1.1.10.0</snmp_oid>
+                    <key>hwSiteRunningStatus</key>
+                    <delay>30s</delay>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <description>(1) normal
+(2) site contem alarme</description>
+                    <valuemap>
+                        <name>alarmStatusSite</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <uuid>3979dad5a49f4958bb281c97e0cd7820</uuid>
+                            <expression>change(/103 - FONTE HUAWEI/hwSiteRunningStatus)&lt;&gt;1</expression>
+                            <name>{$HOST.NAME} STATUS DO ALARME DO SITE: &quot;{ITEM.LASTVALUE}&quot;</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <uuid>0b350befe4104edd930f0c19f8c794c1</uuid>
+                    <name>Uptime</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-MIB::sysUpTime.0</snmp_oid>
+                    <key>sysUpTime</key>
+                    <delay>2m</delay>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <units>uptime</units>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <parameters>
+                                <parameter>0.01</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <triggers>
+                        <trigger>
+                            <uuid>d5a79d11345f4ea6a38223e0d4f57053</uuid>
+                            <expression>last(/103 - FONTE HUAWEI/sysUpTime)&lt;2m</expression>
+                            <name>{$HOST.NAME} REINICIOU</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <macros>
+                <macro>
+                    <macro>{$BARBUS.MAX}</macro>
+                    <value>60</value>
+                </macro>
+                <macro>
+                    <macro>{$BARBUS.MIN}</macro>
+                    <value>51</value>
+                </macro>
+            </macros>
+            <valuemaps>
+                <valuemap>
+                    <uuid>4f835dd8f036418485861d87420d4ea9</uuid>
+                    <name>AcOutageStatus</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Normal</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>AC OFF</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>Ausente</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>Alta Voltagem</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>Baixa Voltagem</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>6</value>
+                            <newvalue>Alta Frequencia</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>7</value>
+                            <newvalue>Baixa Frequencia</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>254</value>
+                            <newvalue>Desconhecido</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>5c231c28b5e14dd99fcad148ec741c99</uuid>
+                    <name>alarmStatusSite</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Normal</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>Alarmado</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>255</value>
+                            <newvalue>Desconhecido</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>2e044081f22a483a8de5d3a957eb1409</uuid>
+                    <name>ctrlRectsOnOff</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>ON</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>OFF</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>255</value>
+                            <newvalue>Operador Nulo</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>a81c7fd11b9a49f8a75886b9163c1544</uuid>
+                    <name>rectOperStatus</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>NORMAL</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>FALHA</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>PROTEGIDO</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>FALHA COMM</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>5</value>
+                            <newvalue>DESLIGOU</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>6</value>
+                            <newvalue>INVALIDO</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>7</value>
+                            <newvalue>SEM CONFIG</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>254</value>
+                            <newvalue>Alarme Retomado</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>255</value>
+                            <newvalue>Desconhecido</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>ee29ee86b05f4ec6b36d94a7df91e945</uuid>
+                    <name>statusBatt</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>float charging - Carregamento Continuo</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>boost charging - Carregamento aumentado</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>discharging - Descarregando</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>hibernating - Hibernando</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>7</value>
+                            <newvalue>Offline</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+                <valuemap>
+                    <uuid>542834113b3047d8b2b3c7fcb565daf1</uuid>
+                    <name>statusmonit</name>
+                    <mappings>
+                        <mapping>
+                            <value>1</value>
+                            <newvalue>Normal</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>2</value>
+                            <newvalue>Falha RS485 port</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>3</value>
+                            <newvalue>Falha net port</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>4</value>
+                            <newvalue>Falha modulo monitoramento</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>254</value>
+                            <newvalue>Retomada do Alarme</newvalue>
+                        </mapping>
+                        <mapping>
+                            <value>255</value>
+                            <newvalue>Desconhecido</newvalue>
+                        </mapping>
+                    </mappings>
+                </valuemap>
+            </valuemaps>
+        </template>
+    </templates>
+</zabbix_export>
